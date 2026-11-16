@@ -1,0 +1,2036 @@
+/* ==========================================================================
+   YASH HEALTH CLINIC — FLAGSHIP MULTISPECIALITY HEALTHCARE SYSTEM
+   Classification: Category #2: Clinic, Hospital and Healthcare
+   Design Philosophy: Apollo/Practo Authority + Stripe Grid Rails + Apple Surface Cadence + Urban Company Trust Loop
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   STEP 1: THREE-TIER CSS DESIGN TOKEN CONTRACT
+   -------------------------------------------------------------------------- */
+:root {
+  /* TIER 1: PRIMITIVE TOKENS (Strict 4px / 8px Spatial Scale) */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+  --space-7: 28px;
+  --space-8: 32px;
+  --space-10: 40px;
+  --space-12: 48px;
+  --space-16: 64px;
+  --space-20: 80px;
+  --space-24: 96px;
+
+  --radius-xs: 4px;
+  --radius-sm: 6px;     /* Inputs */
+  --radius-md: 8px;     /* Badges & Inner frames */
+  --radius-lg: 12px;    /* Static Clinical Department & Review Cards */
+  --radius-xl: 18px;    /* Featured Bento Spotlight Containers */
+  --radius-pill: 9999px;/* Primary & Secondary CTA Pills */
+
+  /* TIER 2: SEMANTIC TOKENS (Strict 60-30-10 Surface Allocation) */
+  --bg-canvas: #ffffff;             /* 60% Dominant Sterile Clinical White */
+  --bg-surface-soft: #f6f9fc;       /* 30% Cool Clinical Off-White Alternating Band */
+  --bg-surface-warm: #f5f7f6;       /* Subtle Integrative Wellness Interlude */
+  --bg-surface-dark: #273951;       /* Institutional Deep Slate Navy */
+
+  --text-primary: #273951;          /* Deep Slate Ink — Never #000000 */
+  --text-secondary: #425466;        /* Body Lead Ink */
+  --text-muted: #64748d;            /* Metadata, Timestamps & Captions (WCAG AA >= 4.5:1) */
+  --text-on-dark: #ffffff;
+  --text-muted-on-dark: #b0c4de;
+
+  --color-brand-primary: #2779a7;   /* Clinical Petrol Blue (Authority & Icons) */
+  --color-action-primary: #24b47e;  /* 10% Vitality Emerald Green (Primary Booking & WhatsApp) */
+  --color-action-pressed: #1b8f63;  /* Tactile Active State */
+  --color-petrol-tint: rgba(39, 121, 167, 0.08);
+  --color-emerald-tint: rgba(36, 180, 126, 0.10);
+
+  --border-subtle: #e3e8ee;         /* 1px Hairline Structural Divider */
+  --border-input: #cbd5e1;
+
+  /* Protected Semantic Status Tokens */
+  --color-success: #008a05;
+  --color-warning: #c47700;
+  --color-danger: #c13515;
+
+  /* TIER 3: COMPONENT TOKENS */
+  --container-max-w: 1200px;
+  --nav-height: 64px;
+  --topbar-height: 36px;
+  --card-padding: var(--space-8);
+  --card-radius: var(--radius-lg);
+  --btn-radius: var(--radius-pill);
+  --input-radius: var(--radius-sm);
+  --shadow-floating: 0 0 0 1px rgba(39, 57, 81, 0.04), 0 4px 12px rgba(39, 57, 81, 0.06), 0 12px 24px rgba(39, 57, 81, 0.08);
+
+  /* Typography Families */
+  --font-ui: "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-editorial: "Newsreader", "Source Serif 4", Georgia, serif;
+}
+
+/* --------------------------------------------------------------------------
+   BASE RESETS & ACCESSIBILITY
+   -------------------------------------------------------------------------- */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: var(--bg-canvas);
+  color: var(--text-primary);
+  font-family: var(--font-ui);
+}
+
+body {
+  min-height: 100vh;
+  line-height: 1.55;
+  background-color: var(--bg-canvas);
+  color: var(--text-primary);
+  overflow-x: hidden;
+  padding-bottom: 0;
+}
+
+@media (max-width: 767px) {
+  body {
+    padding-bottom: 76px; /* Guaranteed clearance for mobile fixed thumb-zone bar */
+  }
+}
+
+img, svg, picture {
+  display: block;
+  max-width: 100%;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+  transition: color 150ms ease;
+}
+
+button, input, select, textarea {
+  font: inherit;
+  color: inherit;
+}
+
+/* --------------------------------------------------------------------------
+   STEP 3: TYPOGRAPHY, TABULAR NUMERALS & INVERSE TRACKING
+   -------------------------------------------------------------------------- */
+.tnum, [data-tnum] {
+  font-feature-settings: "tnum" 1;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.01em;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: var(--text-primary);
+  font-weight: 600;
+  text-wrap: balance;
+}
+
+.display-h1 {
+  font-size: 36px;
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+  font-weight: 600;
+}
+
+@media (min-width: 1024px) {
+  .display-h1 {
+    font-size: 52px;
+    line-height: 1.08;
+  }
+}
+
+.section-h2 {
+  font-size: 26px;
+  line-height: 1.25;
+  letter-spacing: -0.02em;
+  font-weight: 600;
+}
+
+@media (min-width: 1024px) {
+  .section-h2 {
+    font-size: 34px;
+    line-height: 1.2;
+  }
+}
+
+.dept-h3 {
+  font-size: 20px;
+  line-height: 1.35;
+  letter-spacing: -0.01em;
+  font-weight: 600;
+}
+
+.body-lead {
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--text-secondary);
+  max-width: 65ch;
+}
+
+.body-lead-lg {
+  font-size: 18px;
+  line-height: 1.55;
+  color: var(--text-secondary);
+  max-width: 62ch;
+}
+
+.editorial-italic {
+  font-family: var(--font-editorial);
+  font-style: italic;
+  font-weight: 400;
+}
+
+.editorial-heading {
+  font-family: var(--font-editorial);
+  font-weight: 400;
+  font-size: 28px;
+  line-height: 1.3;
+  letter-spacing: -0.02em;
+  color: var(--text-primary);
+}
+
+@media (min-width: 1024px) {
+  .editorial-heading {
+    font-size: 36px;
+    line-height: 1.25;
+  }
+}
+
+/* Micro-Badges & Eyebrows */
+.eyebrow-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 6px var(--space-3);
+  border-radius: var(--radius-pill);
+  background-color: var(--color-petrol-tint);
+  color: var(--color-brand-primary);
+  border: 1px solid rgba(39, 121, 167, 0.16);
+  width: fit-content;
+}
+
+.eyebrow-pill-emerald {
+  background-color: var(--color-emerald-tint);
+  color: var(--color-action-pressed);
+  border-color: rgba(36, 180, 126, 0.25);
+}
+
+.eyebrow-pill-dark {
+  background-color: rgba(255, 255, 255, 0.12);
+  color: var(--text-on-dark);
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+/* --------------------------------------------------------------------------
+   STEP 2: SPATIAL GRID, CONTAINER & PERSISTENT 1PX RAILS
+   -------------------------------------------------------------------------- */
+.container {
+  width: 100%;
+  max-width: var(--container-max-w);
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: var(--space-4);
+  padding-right: var(--space-4);
+}
+
+@media (min-width: 768px) {
+  .container {
+    padding-left: var(--space-6);
+    padding-right: var(--space-6);
+  }
+}
+
+@media (min-width: 1024px) {
+  .container {
+    padding-left: var(--space-10);
+    padding-right: var(--space-10);
+    position: relative;
+  }
+
+  /* Persistent Stripe-style vertical structural rails on desktop */
+  .grid-rails {
+    position: relative;
+  }
+  .grid-rails::before,
+  .grid-rails::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 1px;
+    background-color: var(--border-subtle);
+    pointer-events: none;
+    z-index: 1;
+  }
+  .grid-rails::before {
+    left: var(--space-10);
+  }
+  .grid-rails::after {
+    right: var(--space-10);
+  }
+}
+
+.section-block {
+  padding-top: var(--space-8);
+  padding-bottom: var(--space-8);
+  position: relative;
+}
+
+@media (min-width: 768px) {
+  .section-block {
+    padding-top: var(--space-12);
+    padding-bottom: var(--space-12);
+  }
+}
+
+@media (min-width: 1024px) {
+  .section-block {
+    padding-top: var(--space-20);
+    padding-bottom: var(--space-20);
+  }
+}
+
+/* Surface Allocation Utility Classes */
+.bg-canvas {
+  background-color: var(--bg-canvas);
+}
+
+.bg-soft {
+  background-color: var(--bg-surface-soft);
+  border-top: 1px solid var(--border-subtle);
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.bg-warm {
+  background-color: var(--bg-surface-warm);
+  border-top: 1px solid var(--border-subtle);
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.bg-dark {
+  background-color: var(--bg-surface-dark);
+  color: var(--text-on-dark);
+}
+
+/* --------------------------------------------------------------------------
+   STEP 4: AFFORDANCE, BUTTONS & TACTILE MICRO-INTERACTIONS
+   -------------------------------------------------------------------------- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  padding: 10px 20px;
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 1;
+  border-radius: var(--btn-radius);
+  cursor: pointer;
+  transition: transform 150ms cubic-bezier(0.2, 0, 0, 1), background-color 150ms ease, border-color 150ms ease, box-shadow 150ms ease;
+  border: 1px solid transparent;
+  min-height: 44px;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.btn:active {
+  transform: scale(0.96);
+}
+
+.btn:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(39, 121, 167, 0.3);
+}
+
+/* Primary CTA — Vitality Emerald */
+.btn-primary {
+  background-color: var(--color-action-primary);
+  color: #ffffff;
+  border-color: var(--color-action-primary);
+}
+
+.btn-primary:hover {
+  background-color: var(--color-action-pressed);
+  border-color: var(--color-action-pressed);
+}
+
+/* Secondary CTA — Outline Pill */
+.btn-outline {
+  background-color: transparent;
+  color: var(--text-primary);
+  border-color: var(--border-subtle);
+}
+
+.btn-outline:hover {
+  background-color: var(--bg-surface-soft);
+  border-color: var(--border-input);
+}
+
+.btn-outline-white {
+  background-color: transparent;
+  color: var(--text-on-dark);
+  border-color: rgba(255, 255, 255, 0.3);
+}
+
+.btn-outline-white:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.5);
+}
+
+/* Petrol Brand Pill */
+.btn-petrol {
+  background-color: var(--color-brand-primary);
+  color: #ffffff;
+  border-color: var(--color-brand-primary);
+}
+
+.btn-petrol:hover {
+  background-color: #1e5f84;
+}
+
+/* Text link with chevron */
+.link-chevron {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  color: var(--color-brand-primary);
+  font-weight: 600;
+  font-size: 14px;
+  transition: gap 150ms ease;
+}
+
+.link-chevron:hover {
+  gap: var(--space-2);
+  color: var(--text-primary);
+}
+
+/* Microcopy */
+.micro-sla {
+  display: flex;
+  align-items: center;
+  gap: var(--space-1);
+  font-size: 12px;
+  color: var(--text-muted);
+  margin-top: var(--space-2);
+}
+
+/* --------------------------------------------------------------------------
+   SECTION 1: TOP UTILITY BAR & FROSTED STICKY NAVBAR
+   -------------------------------------------------------------------------- */
+.top-utility-bar {
+  background-color: var(--bg-surface-dark);
+  color: var(--text-on-dark);
+  font-size: 12px;
+  height: var(--topbar-height);
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.topbar-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.status-indicator-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-weight: 500;
+}
+
+.pulse-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: var(--color-success);
+  position: relative;
+  display: inline-block;
+}
+
+.pulse-dot::after {
+  content: "";
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  border-radius: 50%;
+  border: 1px solid var(--color-success);
+  animation: pulse-ring 2s infinite ease-out;
+}
+
+.pulse-dot.closed {
+  background-color: var(--color-warning);
+}
+.pulse-dot.closed::after {
+  border-color: var(--color-warning);
+}
+
+@keyframes pulse-ring {
+  0% { transform: scale(1); opacity: 0.8; }
+  100% { transform: scale(2.2); opacity: 0; }
+}
+
+.topbar-info {
+  display: none;
+  align-items: center;
+  gap: var(--space-4);
+  color: var(--text-muted-on-dark);
+}
+
+@media (min-width: 840px) {
+  .topbar-info {
+    display: flex;
+  }
+}
+
+.global-navbar {
+  position: sticky;
+  top: 0;
+  height: var(--nav-height);
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: saturate(180%) blur(20px);
+  -webkit-backdrop-filter: saturate(180%) blur(20px);
+  border-bottom: 1px solid var(--border-subtle);
+  z-index: 100;
+  display: flex;
+  align-items: center;
+}
+
+.nav-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.brand-crest {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  text-decoration: none;
+}
+
+.brand-icon-box {
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-md);
+  background-color: var(--color-petrol-tint);
+  border: 1px solid rgba(39, 121, 167, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-brand-primary);
+  flex-shrink: 0;
+}
+
+.brand-text-cluster {
+  display: flex;
+  flex-direction: column;
+}
+
+.brand-title {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--text-primary);
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+}
+
+.brand-subtitle {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--color-brand-primary);
+}
+
+.nav-links-center {
+  display: none;
+  align-items: center;
+  gap: var(--space-6);
+  list-style: none;
+}
+
+@media (min-width: 992px) {
+  .nav-links-center {
+    display: flex;
+  }
+}
+
+.nav-link-item a {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-secondary);
+  transition: color 150ms ease;
+  padding: var(--space-2) 0;
+  position: relative;
+}
+
+.nav-link-item a:hover {
+  color: var(--color-brand-primary);
+}
+
+.nav-actions-right {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.nav-phone-btn {
+  display: none;
+}
+
+@media (min-width: 640px) {
+  .nav-phone-btn {
+    display: inline-flex;
+    padding: 8px 16px;
+    font-size: 14px;
+  }
+}
+
+.nav-book-btn {
+  padding: 8px 18px;
+  font-size: 14px;
+}
+
+.nav-mobile-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-sm);
+  background: transparent;
+  border: 1px solid var(--border-subtle);
+  color: var(--text-primary);
+  cursor: pointer;
+}
+
+@media (min-width: 992px) {
+  .nav-mobile-toggle {
+    display: none;
+  }
+}
+
+/* Mobile Nav Drawer */
+.mobile-nav-drawer {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background-color: var(--bg-canvas);
+  border-bottom: 1px solid var(--border-subtle);
+  padding: var(--space-4) var(--space-4) var(--space-6);
+  box-shadow: 0 12px 24px rgba(39, 57, 81, 0.08);
+}
+
+.mobile-nav-drawer.open {
+  display: block;
+}
+
+.mobile-nav-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.mobile-nav-list a {
+  display: block;
+  padding: 12px 16px;
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--text-primary);
+  border-radius: var(--radius-sm);
+  background-color: var(--bg-surface-soft);
+}
+
+/* --------------------------------------------------------------------------
+   SECTION 2: ABOVE-THE-FOLD MULTISPECIALITY HERO (2-COLUMN + 2.5D COMPOSITE)
+   -------------------------------------------------------------------------- */
+.hero-section {
+  padding-top: var(--space-8);
+  padding-bottom: var(--space-12);
+  background-color: var(--bg-canvas);
+  overflow: visible;
+}
+
+@media (min-width: 1024px) {
+  .hero-section {
+    padding-top: var(--space-12);
+    padding-bottom: var(--space-16);
+  }
+}
+
+.hero-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-8);
+  align-items: center;
+}
+
+@media (min-width: 1024px) {
+  .hero-grid {
+    grid-template-columns: 1.15fr 0.85fr;
+    gap: var(--space-12);
+  }
+}
+
+.hero-copy-column {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.hero-action-row {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  margin-top: var(--space-3);
+}
+
+@media (min-width: 640px) {
+  .hero-action-row {
+    flex-direction: row;
+    align-items: center;
+  }
+}
+
+/* 2.5D Layered Clinical UI Composite */
+.hero-visual-column {
+  position: relative;
+  width: 100%;
+}
+
+.hero-composite-wrap {
+  position: relative;
+  max-width: 440px;
+  margin: 0 auto;
+}
+
+.hero-base-card {
+  position: relative;
+  border-radius: 14px;
+  border: 1px solid var(--border-subtle);
+  background-color: var(--bg-surface-soft);
+  overflow: hidden;
+  box-shadow: 0 1px 3px rgba(39, 57, 81, 0.04);
+}
+
+.doctor-portrait-frame {
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  background-color: #eaf1f7;
+  position: relative;
+  overflow: hidden;
+}
+
+.doctor-portrait-frame img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+}
+
+.doctor-credential-plate {
+  padding: var(--space-4);
+  background-color: var(--bg-canvas);
+  border-top: 1px solid var(--border-subtle);
+}
+
+.doctor-name-plate {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--text-primary);
+  line-height: 1.2;
+}
+
+.doctor-role-plate {
+  font-size: 13px;
+  color: var(--color-brand-primary);
+  font-weight: 600;
+  margin-top: 2px;
+}
+
+.doctor-meta-plate {
+  font-size: 12px;
+  color: var(--text-muted);
+  margin-top: 4px;
+}
+
+/* Floating 2.5D Overlays (Desktop) */
+.hero-float-card {
+  position: absolute;
+  background-color: var(--bg-canvas);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border-subtle);
+  box-shadow: var(--shadow-floating);
+  padding: var(--space-3) var(--space-4);
+  z-index: 2;
+  transition: transform 150ms ease;
+}
+
+.hero-float-card:hover {
+  transform: translateY(-2px);
+}
+
+/* Top-Right: Verified Google Rating */
+.float-rating-card {
+  top: -16px;
+  right: -16px;
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  max-width: 260px;
+}
+
+.google-icon-box {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background-color: var(--bg-surface-soft);
+  border: 1px solid var(--border-subtle);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.rating-score-val {
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--text-primary);
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.rating-stars-svg {
+  color: #f59e0b;
+}
+
+.rating-label-sub {
+  font-size: 11px;
+  color: var(--text-muted);
+  line-height: 1.25;
+}
+
+/* Bottom-Left: Live OPD Walk-In Estimator */
+.float-estimator-card {
+  bottom: 24px;
+  left: -20px;
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  max-width: 280px;
+}
+
+.estimator-icon-box {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background-color: var(--color-emerald-tint);
+  border: 1px solid rgba(36, 180, 126, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-action-pressed);
+  flex-shrink: 0;
+}
+
+.estimator-headline {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--color-success);
+}
+
+.estimator-subtext {
+  font-size: 11px;
+  color: var(--text-secondary);
+  line-height: 1.25;
+}
+
+/* Responsive collapse for <768px */
+@media (max-width: 767px) {
+  .hero-float-card {
+    position: relative;
+    top: auto !important;
+    bottom: auto !important;
+    left: auto !important;
+    right: auto !important;
+    margin-top: var(--space-3);
+    max-width: 100%;
+    box-shadow: none;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   SECTION 3: IMMEDIATE QUANTIFIED TRUST BAR (FOLD BOUNDARY)
+   -------------------------------------------------------------------------- */
+.trust-bar-section {
+  background-color: var(--bg-surface-soft);
+  border-top: 1px solid var(--border-subtle);
+  border-bottom: 1px solid var(--border-subtle);
+  padding: 0;
+}
+
+.trust-bar-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+}
+
+@media (min-width: 900px) {
+  .trust-bar-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.trust-cell {
+  padding: var(--space-6) var(--space-5);
+  border-right: 1px solid var(--border-subtle);
+  border-bottom: 1px solid var(--border-subtle);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+
+@media (min-width: 900px) {
+  .trust-cell {
+    border-bottom: none;
+  }
+  .trust-cell:last-child {
+    border-right: none;
+  }
+}
+
+.trust-cell:nth-child(2n) {
+  border-right: none;
+}
+@media (min-width: 900px) {
+  .trust-cell:nth-child(2n) {
+    border-right: 1px solid var(--border-subtle);
+  }
+  .trust-cell:last-child {
+    border-right: none;
+  }
+}
+
+.trust-metric-primary {
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--text-primary);
+  line-height: 1.1;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.trust-caption {
+  font-size: 13px;
+  color: var(--text-secondary);
+  line-height: 1.35;
+}
+
+/* --------------------------------------------------------------------------
+   SECTION 4: 6-WING CLINICAL DEPARTMENTS (ASYMMETRIC BENTO GRID)
+   -------------------------------------------------------------------------- */
+.departments-section {
+  background-color: var(--bg-canvas);
+}
+
+.section-header-wrap {
+  margin-bottom: var(--space-8);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.bento-grid-departments {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-6);
+}
+
+@media (min-width: 768px) {
+  .bento-grid-departments {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .bento-grid-departments {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* Flat Static Department Card — Hairlines Over Shadows */
+.bento-dept-card {
+  background-color: var(--bg-canvas);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--card-radius);
+  padding: 28px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: var(--space-4);
+  transition: transform 150ms cubic-bezier(0.2, 0, 0, 1), border-color 150ms ease, background-color 150ms ease;
+  position: relative;
+}
+
+.bento-dept-card:hover {
+  border-color: #cbd5e1;
+  background-color: #fafbfc;
+}
+
+/* Flagship Card — Spans 2 columns on desktop */
+@media (min-width: 1024px) {
+  .bento-dept-flagship {
+    grid-column: span 2;
+    background-color: var(--bg-surface-soft);
+  }
+}
+
+.dept-header-cluster {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--space-3);
+}
+
+.dept-icon-wrapper {
+  width: 44px;
+  height: 44px;
+  border-radius: var(--radius-md);
+  background-color: var(--color-petrol-tint);
+  border: 1px solid rgba(39, 121, 167, 0.16);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-brand-primary);
+  flex-shrink: 0;
+}
+
+.dept-code-tag {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--text-muted);
+}
+
+.dept-body-cluster {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.dept-tag-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: var(--space-2);
+}
+
+.dept-chip {
+  font-size: 11px;
+  font-weight: 500;
+  padding: 4px 8px;
+  border-radius: var(--radius-xs);
+  background-color: var(--bg-surface-soft);
+  border: 1px solid var(--border-subtle);
+  color: var(--text-secondary);
+}
+
+.dept-action-footer {
+  margin-top: auto;
+  padding-top: var(--space-3);
+  border-top: 1px solid var(--border-subtle);
+}
+
+.btn-dept-book {
+  background: none;
+  border: none;
+  padding: 0;
+  color: var(--color-brand-primary);
+  font-size: 14px;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+  transition: gap 150ms ease, color 150ms ease;
+  min-height: 40px;
+}
+
+.btn-dept-book:hover {
+  gap: 10px;
+  color: var(--color-action-pressed);
+}
+
+/* --------------------------------------------------------------------------
+   SECTION 5: CHIEF MEDICAL OFFICER PORTFOLIO SPOTLIGHT ("MEET DR. YASH")
+   -------------------------------------------------------------------------- */
+.doctor-spotlight-section {
+  background-color: var(--bg-canvas);
+  border-top: 1px solid var(--border-subtle);
+}
+
+.doctor-spotlight-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-8);
+  align-items: center;
+}
+
+@media (min-width: 1024px) {
+  .doctor-spotlight-grid {
+    grid-template-columns: 0.88fr 1.12fr;
+    gap: var(--space-12);
+  }
+}
+
+.cmo-dossier-card {
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--card-radius);
+  background-color: var(--bg-surface-soft);
+  padding: var(--space-6);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.cmo-photo-slot {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  background-color: #e2e8f0;
+  border: 1px solid var(--border-subtle);
+  position: relative;
+}
+
+.cmo-photo-slot img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+}
+
+.cmo-credential-table {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.cmo-table-row {
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: var(--space-2);
+  border-bottom: 1px solid var(--border-subtle);
+  font-size: 13px;
+}
+
+.cmo-label {
+  color: var(--text-muted);
+  font-weight: 500;
+}
+
+.cmo-val {
+  font-weight: 600;
+  color: var(--text-primary);
+  text-align: right;
+}
+
+.cmo-editorial-column {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.editorial-quote-box {
+  padding: var(--space-4) var(--space-5);
+  background-color: var(--bg-surface-warm);
+  border-left: 3px solid var(--color-brand-primary);
+  border-radius: 0 var(--radius-md) var(--radius-md) 0;
+  margin: var(--space-2) 0;
+}
+
+.quote-patient-text {
+  font-family: var(--font-editorial);
+  font-size: 17px;
+  font-style: italic;
+  color: var(--text-primary);
+  line-height: 1.45;
+}
+
+.quote-patient-author {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-muted);
+  margin-top: 6px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.commitments-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  margin-top: var(--space-2);
+}
+
+.commitment-item {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-3);
+}
+
+.commitment-check-icon {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background-color: var(--color-emerald-tint);
+  color: var(--color-action-pressed);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.commitment-title {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.commitment-desc {
+  font-size: 14px;
+  color: var(--text-secondary);
+}
+
+/* --------------------------------------------------------------------------
+   SECTION 6: HOW YOUR VISIT WORKS (4-STEP PATIENT JOURNEY)
+   -------------------------------------------------------------------------- */
+.journey-section {
+  background-color: var(--bg-surface-soft);
+  border-top: 1px solid var(--border-subtle);
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.journey-timeline-rail {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-6);
+  position: relative;
+  margin-top: var(--space-8);
+}
+
+@media (min-width: 900px) {
+  .journey-timeline-rail {
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--space-4);
+  }
+
+  /* Connecting hairline rail */
+  .journey-timeline-rail::before {
+    content: "";
+    position: absolute;
+    top: 24px;
+    left: 48px;
+    right: 48px;
+    height: 1px;
+    background-color: var(--border-subtle);
+    z-index: 0;
+  }
+}
+
+.journey-step-card {
+  background-color: var(--bg-canvas);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--card-radius);
+  padding: var(--space-6);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  position: relative;
+  z-index: 1;
+}
+
+.step-num-pill {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background-color: var(--bg-canvas);
+  border: 1px solid var(--border-subtle);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--color-brand-primary);
+}
+
+.step-title {
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--text-primary);
+  line-height: 1.25;
+}
+
+.step-desc {
+  font-size: 14px;
+  color: var(--text-secondary);
+  line-height: 1.45;
+}
+
+/* --------------------------------------------------------------------------
+   SECTION 7: CLINIC INFRASTRUCTURE GALLERY & SMART OPD CROWD GUIDE
+   -------------------------------------------------------------------------- */
+.infrastructure-section {
+  background-color: var(--bg-canvas);
+}
+
+.gallery-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-6);
+}
+
+@media (min-width: 640px) {
+  .gallery-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .gallery-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.facility-card {
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--card-radius);
+  overflow: hidden;
+  background-color: var(--bg-canvas);
+  display: flex;
+  flex-direction: column;
+}
+
+.facility-image-frame {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  background-color: #f1f5f9;
+  position: relative;
+  overflow: hidden;
+}
+
+.facility-image-frame img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 300ms ease;
+}
+
+.facility-card:hover .facility-image-frame img {
+  transform: scale(1.03);
+}
+
+.facility-caption-box {
+  padding: var(--space-4);
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.facility-title {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.facility-tag {
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+/* Part B: Real Google Maps Busyness Visualizer */
+.busyness-visualizer-box {
+  margin-top: var(--space-12);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-xl);
+  background-color: var(--bg-surface-soft);
+  padding: var(--space-6);
+}
+
+@media (min-width: 768px) {
+  .busyness-visualizer-box {
+    padding: var(--space-8);
+  }
+}
+
+.busyness-header-row {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  margin-bottom: var(--space-6);
+}
+
+@media (min-width: 768px) {
+  .busyness-header-row {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+}
+
+.day-selector-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
+.day-pill-btn {
+  padding: 8px 14px;
+  border-radius: var(--radius-pill);
+  font-size: 13px;
+  font-weight: 600;
+  background-color: var(--bg-canvas);
+  border: 1px solid var(--border-subtle);
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: all 150ms ease;
+}
+
+.day-pill-btn:hover {
+  border-color: var(--color-brand-primary);
+  color: var(--color-brand-primary);
+}
+
+.day-pill-btn.active {
+  background-color: var(--color-brand-primary);
+  border-color: var(--color-brand-primary);
+  color: #ffffff;
+}
+
+.busyness-status-panel {
+  background-color: var(--bg-canvas);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--card-radius);
+  padding: var(--space-5);
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-4);
+}
+
+@media (min-width: 768px) {
+  .busyness-status-panel {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.busyness-metric-col {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.busyness-badge-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px;
+  border-radius: var(--radius-pill);
+  font-size: 12px;
+  font-weight: 700;
+  width: fit-content;
+}
+
+.busyness-badge-pill.peak {
+  background-color: rgba(193, 53, 21, 0.1);
+  color: var(--color-danger);
+  border: 1px solid rgba(193, 53, 21, 0.2);
+}
+
+.busyness-badge-pill.zero-wait {
+  background-color: var(--color-emerald-tint);
+  color: var(--color-action-pressed);
+  border: 1px solid rgba(36, 180, 126, 0.25);
+}
+
+/* --------------------------------------------------------------------------
+   SECTION 8: VERIFIED GOOGLE REVIEWS WALL (100% VERBATIM)
+   -------------------------------------------------------------------------- */
+.reviews-section {
+  background-color: var(--bg-canvas);
+  border-top: 1px solid var(--border-subtle);
+}
+
+.reviews-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-6);
+}
+
+@media (min-width: 768px) {
+  .reviews-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .reviews-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.review-card {
+  background-color: var(--bg-canvas);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--card-radius);
+  padding: var(--space-6);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: var(--space-4);
+  transition: transform 150ms ease, border-color 150ms ease;
+}
+
+.review-card:hover {
+  border-color: #cbd5e1;
+}
+
+.review-top-cluster {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.review-stars-row {
+  display: flex;
+  gap: 2px;
+  color: #f59e0b;
+}
+
+.review-headline {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--text-primary);
+  line-height: 1.3;
+}
+
+.review-verbatim-text {
+  font-size: 14px;
+  color: var(--text-secondary);
+  line-height: 1.5;
+  font-style: italic;
+}
+
+.review-author-bar {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding-top: var(--space-3);
+  border-top: 1px solid var(--border-subtle);
+}
+
+.author-avatar-circle {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background-color: var(--color-petrol-tint);
+  color: var(--color-brand-primary);
+  font-weight: 700;
+  font-size: 13px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(39, 121, 167, 0.2);
+  flex-shrink: 0;
+}
+
+.author-meta-cluster {
+  display: flex;
+  flex-direction: column;
+}
+
+.author-name {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-primary);
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.author-sub {
+  font-size: 11px;
+  color: var(--text-muted);
+}
+
+/* --------------------------------------------------------------------------
+   SECTION 9: TRANSPARENT OPD FEE STRUCTURE & CARE PACKAGES (₹ WITH TNUM)
+   -------------------------------------------------------------------------- */
+.pricing-section {
+  background-color: var(--bg-surface-soft);
+  border-top: 1px solid var(--border-subtle);
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.pricing-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-6);
+  align-items: stretch;
+}
+
+@media (min-width: 1024px) {
+  .pricing-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.pricing-card {
+  background-color: var(--bg-canvas);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--card-radius);
+  padding: 32px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: var(--space-6);
+  position: relative;
+}
+
+/* Featured Dark Slate Card */
+.pricing-card-featured {
+  background-color: var(--bg-surface-dark);
+  color: var(--text-on-dark);
+  border-color: #3b506f;
+  transform: scale(1.02);
+  z-index: 2;
+}
+
+.pricing-card-featured h3,
+.pricing-card-featured .price-amount {
+  color: var(--text-on-dark);
+}
+
+.pricing-card-featured .price-desc,
+.pricing-card-featured .pricing-benefit-item {
+  color: var(--text-muted-on-dark);
+}
+
+.popular-badge {
+  position: absolute;
+  top: -12px;
+  left: 32px;
+  background-color: var(--color-action-primary);
+  color: #ffffff;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  padding: 4px 12px;
+  border-radius: var(--radius-pill);
+}
+
+.pricing-top-tier {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.price-box {
+  display: flex;
+  align-items: baseline;
+  gap: 4px;
+  margin: var(--space-2) 0;
+}
+
+.price-amount {
+  font-size: 38px;
+  font-weight: 700;
+  color: var(--text-primary);
+  line-height: 1;
+}
+
+.price-cycle {
+  font-size: 14px;
+  color: var(--text-muted);
+}
+
+.pricing-benefits-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  margin-top: var(--space-2);
+}
+
+.pricing-benefit-item {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-2);
+  font-size: 14px;
+  color: var(--text-secondary);
+}
+
+.benefit-check {
+  color: var(--color-action-primary);
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+/* --------------------------------------------------------------------------
+   SECTION 10: OBJECTION-HANDLING CLINICAL FAQ (CENTERED ACCORDION)
+   -------------------------------------------------------------------------- */
+.faq-section {
+  background-color: var(--bg-canvas);
+}
+
+.faq-container-narrow {
+  max-width: 768px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.faq-accordion-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.faq-item {
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  background-color: var(--bg-canvas);
+  overflow: hidden;
+  transition: border-color 150ms ease;
+}
+
+.faq-item.open {
+  border-color: var(--color-brand-primary);
+}
+
+.faq-trigger {
+  width: 100%;
+  min-height: 52px;
+  padding: 16px 20px;
+  background: none;
+  border: none;
+  text-align: left;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--text-primary);
+  cursor: pointer;
+  transition: background-color 150ms ease;
+}
+
+.faq-trigger:hover {
+  background-color: var(--bg-surface-soft);
+}
+
+.faq-trigger:focus-visible {
+  outline: none;
+  box-shadow: inset 0 0 0 2px var(--color-brand-primary);
+}
+
+.faq-chevron {
+  width: 20px;
+  height: 20px;
+  color: var(--text-muted);
+  transition: transform 200ms ease;
+  flex-shrink: 0;
+}
+
+.faq-item.open .faq-chevron {
+  transform: rotate(180deg);
+  color: var(--color-brand-primary);
+}
+
+.faq-content {
+  display: none;
+  padding: 0 20px 20px;
+  font-size: 15px;
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+
+.faq-item.open .faq-content {
+  display: block;
+}
+
+/* --------------------------------------------------------------------------
+   SECTION 11: APPOINTMENT DISPATCHER, MAP CARD & UTILITY FOOTER
+   -------------------------------------------------------------------------- */
+.dispatch-section {
+  background-color: var(--bg-surface-soft);
+  border-top: 1px solid var(--border-subtle);
+}
+
+.dispatch-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-8);
+  align-items: start;
+}
+
+@media (min-width: 1024px) {
+  .dispatch-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-12);
+  }
+}
+
+.location-info-card {
+  background-color: var(--bg-canvas);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--card-radius);
+  padding: var(--space-6);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+@media (min-width: 768px) {
+  .location-info-card {
+    padding: var(--space-8);
+  }
+}
+
+.info-item-row {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-3);
+}
+
+.info-icon-box {
+  width: 36px;
+  height: 36px;
+  border-radius: var(--radius-sm);
+  background-color: var(--color-petrol-tint);
+  color: var(--color-brand-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+/* Chunked WhatsApp Booking Form */
+.appointment-form-card {
+  background-color: var(--bg-canvas);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--card-radius);
+  padding: var(--space-6);
+  box-shadow: 0 4px 16px rgba(39, 57, 81, 0.04);
+}
+
+@media (min-width: 768px) {
+  .appointment-form-card {
+    padding: var(--space-8);
+  }
+}
+
+.booking-form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  margin-top: var(--space-4);
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.form-label {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.form-input,
+.form-select {
+  width: 100%;
+  min-height: 48px;
+  padding: 10px 14px;
+  border-radius: var(--input-radius);
+  border: 1px solid var(--border-input);
+  background-color: var(--bg-canvas);
+  color: var(--text-primary);
+  font-size: 16px; /* Crucial: 16px avoids iOS/Android auto-zoom */
+  transition: border-color 150ms ease, box-shadow 150ms ease;
+}
+
+.form-input:focus,
+.form-select:focus {
+  outline: none;
+  border-color: var(--color-brand-primary);
+  box-shadow: 0 0 0 3px rgba(39, 121, 167, 0.2);
+}
+
+.form-input::placeholder {
+  color: #94a3b8;
+}
+
+.form-row-2col {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-4);
+}
+
+@media (min-width: 600px) {
+  .form-row-2col {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+/* Utility Footer */
+.hospital-footer {
+  background-color: var(--bg-canvas);
+  border-top: 1px solid var(--border-subtle);
+  padding-top: var(--space-12);
+  padding-bottom: var(--space-8);
+  color: var(--text-secondary);
+}
+
+.footer-columns-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-8);
+  margin-bottom: var(--space-12);
+}
+
+@media (min-width: 640px) {
+  .footer-columns-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .footer-columns-grid {
+    grid-template-columns: 1.4fr 1fr 1fr 1.2fr;
+  }
+}
+
+.footer-col {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.footer-title {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--text-primary);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.footer-link-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.footer-link-list a {
+  font-size: 13px;
+  color: var(--text-muted);
+}
+
+.footer-link-list a:hover {
+  color: var(--color-brand-primary);
+}
+
+.seo-catchment-cloud {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.catchment-tag {
+  font-size: 11px;
+  padding: 3px 8px;
+  border-radius: var(--radius-xs);
+  background-color: var(--bg-surface-soft);
+  border: 1px solid var(--border-subtle);
+  color: var(--text-secondary);
+}
+
+.footer-bottom-bar {
+  padding-top: var(--space-6);
+  border-top: 1px solid var(--border-subtle);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+@media (min-width: 768px) {
+  .footer-bottom-bar {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   STEP 6: MOBILE-FIRST FIXED BOTTOM THUMB-ZONE BAR (<768px)
+   -------------------------------------------------------------------------- */
+.mobile-thumb-bar {
+  display: none;
+}
+
+@media (max-width: 767px) {
+  .mobile-thumb-bar {
+    display: grid;
+    grid-template-columns: 1fr 1.15fr;
+    gap: 10px;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 68px;
+    padding: 10px 16px;
+    background: rgba(255, 255, 255, 0.96);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-top: 1px solid var(--border-subtle);
+    z-index: 999;
+    box-shadow: 0 -4px 16px rgba(39, 57, 81, 0.08);
+  }
+
+  .mobile-thumb-bar .btn {
+    min-height: 48px;
+    font-size: 14px;
+    padding: 8px 12px;
+  }
+}
