@@ -1,7 +1,7 @@
 # Yash Health Clinic — Flagship Multispeciality Healthcare & Doctor Portfolio
 
 [![Live Site](https://img.shields.io/badge/Status-Live%20Production-24B47E?style=flat-square)](https://sameer13072004-gif.github.io/yash-health-clinic/)
-[![Google Rating](https://img.shields.io/badge/Google%20Rating-5.0%20%E2%98%85%20(7%20Reviews)-FBBC05?style=flat-square&logo=google)](https://share.google/Ky9ZX5eQNC7bQ0FjZ)
+[![Google Rating](https://img.shields.io/badge/Google%20Rating-5.0%20%E2%98%85%20Verified-FBBC05?style=flat-square&logo=google)](https://share.google/Ky9ZX5eQNC7bQ0FjZ)
 [![OPD Hours](https://img.shields.io/badge/OPD%20Hours-06%3A00%20AM%20%E2%80%93%2010%3A00%20PM-2779A7?style=flat-square)](tel:+918449430219)
 [![Design Standard](https://img.shields.io/badge/Design%20System-World--Class%20UI%2FUX-273951?style=flat-square)]()
 
@@ -19,7 +19,7 @@ Designed and engineered following **Category #2: Clinic, Hospital and Healthcare
 
 - **Lead Physician:** Dr. Yash Kumar (BAMS — Bachelor of Ayurvedic Medicine & Surgery)
 - **Practice Focus:** General Physician, Primary Care, Family Medicine & Integrative Ayurvedic Healthcare
-- **Google Record:** `5.0 ★` (100% 5-Star Satisfaction Across 7 Verified Google Reviews)
+- **Google Record:** `5.0 ★` (Verified Google Reviews)
 - **Official Google Maps Listing:** [https://share.google/Ky9ZX5eQNC7bQ0FjZ](https://share.google/Ky9ZX5eQNC7bQ0FjZ)
 - **OPD Timings:** `06:00 AM – 10:00 PM` (Open 16 Hours Daily, Monday to Sunday, All 7 Days)
 - **Direct Phone:** `+91 84494 30219` (`tel:+918449430219`)
@@ -60,7 +60,7 @@ The entire UI is built with zero hardcoded hex values in component selectors, en
 4. **6-Wing Clinical Departments Bento Grid:** Asymmetric 3-column Bento grid with Wing 01 spanning 2 columns, featuring 1-click smooth-scroll and combobox auto-selection.
 5. **Chief Medical Officer Portfolio Spotlight:** Executive editorial dossier covering qualifications, clinical philosophy, verbatim review quote, and 3 verifiable commitments.
 6. **How Your Visit Works (4-Step Timeline):** Numbered steps (01 to 04) connected by a 1px hairline rail.
-7. **Clinic Infrastructure Gallery & Smart OPD Crowd Guide:** 4-card 4:3 facility showcase + interactive Google Maps hourly busyness graph (Mon–Sun).
+7. **Inside Our Clinic & Facilities:** 4-card 4:3 facility showcase (Consultation Chamber, In-House Dispensary, Maternal & Child Nursing Room, Clinic Entrance).
 8. **Verified Google Reviews Wall:** 100% real verbatim Google patient reviews with 1:1 circular avatars and Google verification badges.
 9. **Transparent OPD Fee Structure:** Transparent rate card (₹200 Standard OPD, ₹350+ Medicine Kit, Custom Family Chronic Plan) with tabular numerals (`tnum`).
 10. **Objection-Handling Clinical FAQ:** Keyboard-accessible ARIA accordion answering local patient queries.

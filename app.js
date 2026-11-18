@@ -1,6 +1,6 @@
 /**
  * YASH HEALTH CLINIC — PRODUCTION CORE CONTROLLER
- * Architecture: Centralized Config + Live IST Engine + Google Maps Busyness Visualizer + Dynamic WhatsApp Dispatcher
+ * Architecture: Centralized Config + Live IST Engine + Department Linker + Dynamic WhatsApp Dispatcher
  */
 
 // -----------------------------------------------------------------------------
@@ -12,9 +12,9 @@ const CLINIC_CONFIG = {
   leadDoctor: "Dr. Yash Kumar",
   qualifications: "BAMS — General Physician & Family Medicine Specialist",
   googleRating: "5.0",
-  reviewCount: 7,
   googleMapsUrl: "https://share.google/Ky9ZX5eQNC7bQ0FjZ",
   phoneDisplay: "+91 84494 30219",
+  phoneShort: "84494 30219",
   phoneTel: "+918449430219",
   whatsappNumber: "918449430219",
   address: "Gali No. 2, Hoshiyarpur, Hoshiarpur Village, Sector 51, Noida, Uttar Pradesh 201303",
@@ -43,34 +43,38 @@ const CLINIC_CONFIG = {
   pricing: {
     standardOpd: 200,
     consultationPlusMedicine: 350,
-    chronicCarePlan: "Custom Routine"
+    chronicCarePlan: "Routine Care"
   }
 };
 
 // -----------------------------------------------------------------------------
 // CLINIC ASSETS SLOTS
-// High-craft fallback vector assets embedded as data URIs.
 // Swap any value with your direct ImgBB / Postimages .jpg / .png link anytime.
 // -----------------------------------------------------------------------------
 const CLINIC_ASSETS = {
+  // Official Clinic Logo (Navbar & Footer)
+  clinicLogo: "https://i.postimg.cc/vBrnhr3W/Whats-App-Image-2026-11-18-at-1-16-09-PM.jpg",
+
   // Aspect-ratio: 4/5 (Doctor Portrait in Consultation Cabin)
   doctorPortrait: "https://i.postimg.cc/vB7q2MRD/Dr-Yash-Portrait.jpg",
-  
+
   // Aspect-ratio: 16/9 (Signboard & Entrance in Gali No. 2, Sector 51 Noida)
   clinicExterior: "https://i.postimg.cc/76wzj77D/Dr-Yash-Clinic-Exterior.webp",
-  
+
   // Aspect-ratio: 4/3 (Diagnostic & Consultation Chamber)
   consultationRoom: "https://i.postimg.cc/6QdRHz73/Dr-Yash-Consultation-Room.webp",
-  
+
   // Aspect-ratio: 4/3 (In-house medicine dispensary)
   pharmacyWing: "https://i.postimg.cc/G2dD6YYd/Dr-Yash-Pharmacy-Wing-jpg.jpg",
-  
+
   // Aspect-ratio: 4/3 (Dedicated maternal & child nursing room)
   nursingRoom: "https://i.postimg.cc/pdD80k9V/Dr-Yash-Observation-Room-jpg.jpg"
 };
 
 // SVG Fallback Generator for pristine offline/immediate rendering
 const SVG_FALLBACKS = {
+  clinicLogo: `data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40"><rect width="40" height="40" rx="8" fill="%23ebf5fa"/><path d="M20 9v22M9 20h22" stroke="%232779a7" stroke-width="3.5" stroke-linecap="round"/></svg>`,
+
   doctorPortrait: `data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 500" width="100%" height="100%"><defs><linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="%23273951"/><stop offset="100%" stop-color="%231a2636"/></linearGradient><linearGradient id="coatGrad" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="%23ffffff"/><stop offset="100%" stop-color="%23e8edf2"/></linearGradient></defs><rect width="400" height="500" fill="url(%23bgGrad)"/><circle cx="200" cy="160" r="64" fill="%23e2e8f0"/><path d="M120 380 C130 260 270 260 280 380 Z" fill="url(%23coatGrad)"/><path d="M170 260 L200 330 L230 260" stroke="%232779a7" stroke-width="4" fill="none"/><circle cx="200" cy="340" r="14" fill="%232779a7"/><text x="200" y="420" font-family="-apple-system,BlinkMacSystemFont,sans-serif" font-size="18" font-weight="700" fill="%23ffffff" text-anchor="middle">DR. YASH KUMAR</text><text x="200" y="445" font-family="-apple-system,BlinkMacSystemFont,sans-serif" font-size="13" font-weight="500" fill="%23b0c4de" text-anchor="middle">BAMS • General Physician &amp; Family Care</text><rect x="110" y="460" width="180" height="24" rx="12" fill="%2324b47e"/><text x="200" y="476" font-family="-apple-system,BlinkMacSystemFont,sans-serif" font-size="11" font-weight="700" fill="%23ffffff" text-anchor="middle">SECTOR 51, NOIDA</text></svg>`,
 
   clinicExterior: `data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" width="100%" height="100%"><defs><linearGradient id="extGrad" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" stop-color="%23f6f9fc"/><stop offset="100%" stop-color="%23e2e8f0"/></linearGradient></defs><rect width="800" height="450" fill="url(%23extGrad)"/><rect x="140" y="60" width="520" height="90" rx="8" fill="%23273951"/><text x="400" y="105" font-family="-apple-system,BlinkMacSystemFont,sans-serif" font-size="28" font-weight="800" fill="%23ffffff" text-anchor="middle" letter-spacing="1">YASH HEALTH CLINIC</text><text x="400" y="132" font-family="-apple-system,BlinkMacSystemFont,sans-serif" font-size="14" font-weight="600" fill="%2324b47e" text-anchor="middle">DR. YASH KUMAR (BAMS) • GALI NO. 2, SECTOR 51 NOIDA</text><rect x="220" y="180" width="360" height="270" fill="%23ffffff" stroke="%23cbd5e1" stroke-width="4"/><line x1="400" y1="180" x2="400" y2="450" stroke="%23cbd5e1" stroke-width="4"/><rect x="260" y="240" width="100" height="150" fill="%23eaf2f8" rx="4"/><rect x="440" y="240" width="100" height="150" fill="%23eaf2f8" rx="4"/><rect x="330" y="40" width="140" height="24" rx="12" fill="%2324b47e"/><text x="400" y="56" font-family="-apple-system,BlinkMacSystemFont,sans-serif" font-size="11" font-weight="700" fill="%23ffffff" text-anchor="middle">OPEN DAILY 6 AM – 10 PM</text></svg>`,
@@ -95,7 +99,7 @@ function getIndianStandardTime() {
     hour12: false,
     weekday: "long"
   });
-  
+
   const parts = formatter.formatToParts(now);
   let hour = 0;
   let minute = 0;
@@ -107,7 +111,6 @@ function getIndianStandardTime() {
     if (part.type === "weekday") weekday = part.value;
   }
 
-  // Handle midnight 24 hour edge cases if any
   if (hour === 24) hour = 0;
 
   return { hour, minute, weekday };
@@ -120,8 +123,8 @@ function updateLiveClinicStatus() {
 
   if (!statusEl || !dotEl) return;
 
-  const isOpen = (hour > CLINIC_CONFIG.operatingHours.openHour || 
-                 (hour === CLINIC_CONFIG.operatingHours.openHour && minute >= CLINIC_CONFIG.operatingHours.openMinute)) && 
+  const isOpen = (hour > CLINIC_CONFIG.operatingHours.openHour ||
+                 (hour === CLINIC_CONFIG.operatingHours.openHour && minute >= CLINIC_CONFIG.operatingHours.openMinute)) &&
                  (hour < CLINIC_CONFIG.operatingHours.closeHour);
 
   if (isOpen) {
@@ -134,118 +137,7 @@ function updateLiveClinicStatus() {
 }
 
 // -----------------------------------------------------------------------------
-// 3. GOOGLE MAPS REAL BUSYNESS DATA & VISUALIZER
-// -----------------------------------------------------------------------------
-const GOOGLE_BUSYNESS_DATA = {
-  Monday: {
-    label: "Monday",
-    headline: "Steady Morning • Peak Evening Demand",
-    peakHours: "6:00 PM – 9:00 PM (Working professionals returning from Delhi/Noida offices)",
-    fastestWindow: "11:00 AM – 4:00 PM & Early 6:00 AM – 8:00 AM (< 5 mins wait)",
-    statusType: "peak-evening",
-    densityBars: [20, 35, 55, 60, 45, 30, 25, 25, 30, 40, 75, 90, 85, 45, 30, 15] // 6 AM to 10 PM (16 hrs)
-  },
-  Tuesday: {
-    label: "Tuesday",
-    headline: "Fastest Zero-Wait Day of the Week",
-    peakHours: "Minor peak 7:00 PM – 8:30 PM (Overall very smooth patient flow)",
-    fastestWindow: "10:00 AM – 5:00 PM & 8:30 PM – 10:00 PM (Almost zero wait)",
-    statusType: "zero-wait",
-    densityBars: [15, 25, 35, 40, 35, 25, 20, 20, 25, 30, 50, 60, 55, 35, 20, 10]
-  },
-  Wednesday: {
-    label: "Wednesday",
-    headline: "Balanced Flow • Recommended Afternoon & Evening",
-    peakHours: "7:00 PM – 8:30 PM",
-    fastestWindow: "2:00 PM – 6:00 PM & 8:45 PM – 10:00 PM (< 10 mins wait)",
-    statusType: "zero-wait",
-    densityBars: [15, 30, 45, 50, 40, 25, 20, 20, 25, 35, 65, 70, 60, 40, 25, 10]
-  },
-  Thursday: {
-    label: "Thursday",
-    headline: "Active All Day • Senior & Family Checkups",
-    peakHours: "10:30 AM – 1:00 PM & 6:30 PM – 8:30 PM",
-    fastestWindow: "6:00 AM – 9:00 AM & 2:30 PM – 5:00 PM",
-    statusType: "peak-allday",
-    densityBars: [20, 40, 65, 75, 65, 40, 30, 30, 35, 50, 70, 80, 75, 50, 30, 15]
-  },
-  Friday: {
-    label: "Friday",
-    headline: "Morning Surge • Relaxed Night Slots",
-    peakHours: "9:00 AM – 12:30 PM",
-    fastestWindow: "1:30 PM – 5:00 PM & 8:30 PM – 10:00 PM",
-    statusType: "zero-wait",
-    densityBars: [20, 35, 60, 85, 70, 45, 30, 25, 30, 45, 65, 70, 60, 35, 20, 10]
-  },
-  Saturday: {
-    label: "Saturday",
-    headline: "Weekend Family Care • Active Daytime",
-    peakHours: "10:00 AM – 3:00 PM (Family preventive checkups & child visits)",
-    fastestWindow: "6:00 AM – 9:00 AM & 6:30 PM – 10:00 PM",
-    statusType: "peak-day",
-    densityBars: [25, 45, 70, 85, 80, 75, 65, 55, 50, 50, 60, 65, 55, 40, 25, 15]
-  },
-  Sunday: {
-    label: "Sunday",
-    headline: "Morning Peak Rush • Calm Evening Hours",
-    peakHours: "9:00 AM – 1:30 PM (Heaviest walk-in window of the week)",
-    fastestWindow: "2:30 PM – 5:00 PM & 7:30 PM – 10:00 PM (Recommended for fast visits)",
-    statusType: "peak-morning",
-    densityBars: [30, 60, 85, 95, 90, 80, 50, 40, 40, 45, 55, 60, 50, 40, 25, 15]
-  }
-};
-
-function renderBusynessDay(dayKey) {
-  const data = GOOGLE_BUSYNESS_DATA[dayKey];
-  if (!data) return;
-
-  // Update tabs
-  document.querySelectorAll(".day-pill-btn").forEach(btn => {
-    btn.classList.toggle("active", btn.getAttribute("data-day") === dayKey);
-  });
-
-  // Update content
-  const titleEl = document.getElementById("busyness-day-title");
-  const headlineEl = document.getElementById("busyness-day-headline");
-  const peakEl = document.getElementById("busyness-peak-text");
-  const fastestEl = document.getElementById("busyness-fastest-text");
-  const badgeWrap = document.getElementById("busyness-badge-wrap");
-  const barsWrap = document.getElementById("busyness-bars-row");
-
-  if (titleEl) titleEl.innerText = `${data.label} Patient Flow Profile`;
-  if (headlineEl) headlineEl.innerText = data.headline;
-  if (peakEl) peakEl.innerText = data.peakHours;
-  if (fastestEl) fastestEl.innerText = data.fastestWindow;
-
-  if (badgeWrap) {
-    if (data.statusType.includes("zero-wait")) {
-      badgeWrap.innerHTML = `<span class="busyness-badge-pill zero-wait">⚡ Lowest Wait Window Recommended</span>`;
-    } else {
-      badgeWrap.innerHTML = `<span class="busyness-badge-pill peak">⚠️ Peak Demand Expected — Book Priority Slot</span>`;
-    }
-  }
-
-  // Render hourly bars
-  if (barsWrap) {
-    const hours = ["6A", "7A", "8A", "9A", "10A", "11A", "12P", "1P", "2P", "3P", "4P", "5P", "6P", "7P", "8P", "9P"];
-    barsWrap.innerHTML = data.densityBars.map((val, idx) => {
-      const isHigh = val >= 70;
-      const isLow = val <= 35;
-      const barColor = isHigh ? "var(--color-danger)" : isLow ? "var(--color-action-primary)" : "var(--color-brand-primary)";
-      return `
-        <div style="flex:1; display:flex; flex-direction:column; align-items:center; gap:4px;">
-          <div style="width:100%; height:80px; background:var(--border-subtle); border-radius:4px; display:flex; align-items:flex-end; overflow:hidden;">
-            <div style="width:100%; height:${val}%; background:${barColor}; border-radius:3px 3px 0 0; transition:height 300ms ease;"></div>
-          </div>
-          <span style="font-size:10px; font-weight:600; color:var(--text-muted);">${hours[idx]}</span>
-        </div>
-      `;
-    }).join("");
-  }
-}
-
-// -----------------------------------------------------------------------------
-// 4. DEPARTMENT SELECTOR & PREFILL SYSTEM
+// 3. DEPARTMENT SELECTOR & PREFILL SYSTEM
 // -----------------------------------------------------------------------------
 function selectDepartmentForBooking(deptTarget) {
   const formSection = document.getElementById("appointment-section");
@@ -273,7 +165,6 @@ function selectDepartmentForBooking(deptTarget) {
 
   if (formSection) {
     formSection.scrollIntoView({ behavior: "smooth" });
-    // Visual flash highlight
     formSection.style.transition = "outline 200ms ease";
     formSection.style.outline = "3px solid var(--color-action-primary)";
     setTimeout(() => {
@@ -283,7 +174,7 @@ function selectDepartmentForBooking(deptTarget) {
 }
 
 // -----------------------------------------------------------------------------
-// 5. CHUNKED WHATSAPP APPOINTMENT DISPATCHER
+// 4. CHUNKED WHATSAPP APPOINTMENT DISPATCHER
 // -----------------------------------------------------------------------------
 function handleAppointmentSubmit(event) {
   event.preventDefault();
@@ -320,12 +211,11 @@ function handleAppointmentSubmit(event) {
 
   const whatsappUrl = `https://wa.me/${CLINIC_CONFIG.whatsappNumber}?text=${message}`;
 
-  // Open WhatsApp in new tab / app
   window.open(whatsappUrl, "_blank", "noopener,noreferrer");
 }
 
 // -----------------------------------------------------------------------------
-// 6. ACCORDION CONTROLLER (ACCESSIBLE ARIA)
+// 5. ACCORDION CONTROLLER (ACCESSIBLE ARIA)
 // -----------------------------------------------------------------------------
 function initAccordion() {
   const triggers = document.querySelectorAll(".faq-trigger");
@@ -334,7 +224,6 @@ function initAccordion() {
       const parent = trigger.closest(".faq-item");
       const isOpen = parent.classList.contains("open");
 
-      // Close all others for single-expansion focus
       document.querySelectorAll(".faq-item").forEach(item => {
         item.classList.remove("open");
         const btn = item.querySelector(".faq-trigger");
@@ -350,27 +239,27 @@ function initAccordion() {
 }
 
 // -----------------------------------------------------------------------------
-// 7. ASSET INITIALIZER & IMAGE FALLBACKS
+// 6. ASSET INITIALIZER & IMAGE FALLBACKS
 // -----------------------------------------------------------------------------
 function initClinicAssets() {
   const imageElements = {
-    "asset-doctor-portrait": CLINIC_ASSETS.doctorPortrait || SVG_FALLBACKS.doctorPortrait,
-    "asset-doctor-spotlight": CLINIC_ASSETS.doctorPortrait || SVG_FALLBACKS.doctorPortrait,
-    "asset-clinic-exterior": CLINIC_ASSETS.clinicExterior || SVG_FALLBACKS.clinicExterior,
-    "asset-consultation": CLINIC_ASSETS.consultationRoom || SVG_FALLBACKS.consultationRoom,
-    "asset-pharmacy": CLINIC_ASSETS.pharmacyWing || SVG_FALLBACKS.pharmacyWing,
-    "asset-nursing": CLINIC_ASSETS.nursingRoom || SVG_FALLBACKS.nursingRoom
+    "asset-clinic-logo": { src: CLINIC_ASSETS.clinicLogo, fallback: SVG_FALLBACKS.clinicLogo },
+    "asset-footer-logo": { src: CLINIC_ASSETS.clinicLogo, fallback: SVG_FALLBACKS.clinicLogo },
+    "asset-doctor-portrait": { src: CLINIC_ASSETS.doctorPortrait, fallback: SVG_FALLBACKS.doctorPortrait },
+    "asset-doctor-spotlight": { src: CLINIC_ASSETS.doctorPortrait, fallback: SVG_FALLBACKS.doctorPortrait },
+    "asset-clinic-exterior": { src: CLINIC_ASSETS.clinicExterior, fallback: SVG_FALLBACKS.clinicExterior },
+    "asset-consultation": { src: CLINIC_ASSETS.consultationRoom, fallback: SVG_FALLBACKS.consultationRoom },
+    "asset-pharmacy": { src: CLINIC_ASSETS.pharmacyWing, fallback: SVG_FALLBACKS.pharmacyWing },
+    "asset-nursing": { src: CLINIC_ASSETS.nursingRoom, fallback: SVG_FALLBACKS.nursingRoom }
   };
 
-  Object.entries(imageElements).forEach(([elementId, src]) => {
+  Object.entries(imageElements).forEach(([elementId, config]) => {
     const el = document.getElementById(elementId);
     if (el) {
-      el.src = src;
+      el.src = config.src || config.fallback;
       el.onerror = () => {
-        // Fallback to SVG if external image fails
-        const fallbackKey = elementId.replace("asset-", "").replace("doctor-portrait", "doctorPortrait").replace("doctor-spotlight", "doctorPortrait").replace("clinic-exterior", "clinicExterior").replace("consultation", "consultationRoom").replace("pharmacy", "pharmacyWing").replace("nursing", "nursingRoom");
-        if (SVG_FALLBACKS[fallbackKey]) {
-          el.src = SVG_FALLBACKS[fallbackKey];
+        if (el.src !== config.fallback) {
+          el.src = config.fallback;
         }
       };
     }
@@ -378,7 +267,7 @@ function initClinicAssets() {
 }
 
 // -----------------------------------------------------------------------------
-// 8. MOBILE NAV DRAWER CONTROLLER
+// 7. MOBILE NAV DRAWER CONTROLLER
 // -----------------------------------------------------------------------------
 function initMobileNav() {
   const toggleBtn = document.getElementById("mobile-menu-toggle");
@@ -392,7 +281,6 @@ function initMobileNav() {
     toggleBtn.setAttribute("aria-expanded", String(!isOpen));
   });
 
-  // Close drawer on link click
   drawer.querySelectorAll("a").forEach(link => {
     link.addEventListener("click", () => {
       drawer.classList.remove("open");
@@ -405,33 +293,14 @@ function initMobileNav() {
 // INITIALIZATION ON DOM READY
 // -----------------------------------------------------------------------------
 document.addEventListener("DOMContentLoaded", () => {
-  // 1. Initial clinic assets
   initClinicAssets();
 
-  // 2. Live IST clock update
   updateLiveClinicStatus();
-  setInterval(updateLiveClinicStatus, 30000); // 30-sec refresh
+  setInterval(updateLiveClinicStatus, 30000);
 
-  // 3. Day of week busyness visualizer setup
-  const { weekday } = getIndianStandardTime();
-  const validDay = GOOGLE_BUSYNESS_DATA[weekday] ? weekday : "Monday";
-  renderBusynessDay(validDay);
-
-  // Bind day buttons
-  document.querySelectorAll(".day-pill-btn").forEach(btn => {
-    btn.addEventListener("click", () => {
-      const day = btn.getAttribute("data-day");
-      if (day) renderBusynessDay(day);
-    });
-  });
-
-  // 4. Accordion setup
   initAccordion();
-
-  // 5. Mobile Nav setup
   initMobileNav();
 
-  // 6. Form listener
   const form = document.getElementById("appointment-dispatch-form");
   if (form) {
     form.addEventListener("submit", handleAppointmentSubmit);

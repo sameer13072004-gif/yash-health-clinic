@@ -8,14 +8,18 @@ const mimeTypes = {
   '.css': 'text/css',
   '.js': 'text/javascript',
   '.json': 'application/json',
-  '.svg': 'image/svg+xml'
+  '.svg': 'image/svg+xml',
+  '.jpg': 'image/jpeg',
+  '.jpeg': 'image/jpeg',
+  '.png': 'image/png',
+  '.webp': 'image/webp'
 };
 
 const server = http.createServer((req, res) => {
-  let cleanUrl = req.url.split('?')[0];
+  let cleanUrl = decodeURIComponent(req.url.split('?')[0]);
   let filePath = path.join(__dirname, cleanUrl === '/' ? 'index.html' : cleanUrl);
-  const ext = path.extname(filePath);
-  const contentType = mimeTypes[ext] || 'text/plain';
+  const ext = path.extname(filePath).toLowerCase();
+  const contentType = mimeTypes[ext] || 'application/octet-stream';
 
   fs.readFile(filePath, (err, content) => {
     if (err) {
@@ -28,7 +32,7 @@ const server = http.createServer((req, res) => {
       }
     } else {
       res.writeHead(200, { 'Content-Type': contentType });
-      res.end(content, 'utf-8');
+      res.end(content);
     }
   });
 });
