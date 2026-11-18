@@ -17,7 +17,7 @@ const CLINIC_CONFIG = {
   phoneShort: "84494 30219",
   phoneTel: "+918449430219",
   whatsappNumber: "918449430219",
-  address: "Gali No. 2, Hoshiyarpur, Hoshiarpur Village, Sector 51, Noida, Uttar Pradesh 201303",
+  address: "Moti Nagar Colony, Near Awas Vikas Colony, Amroha, Uttar Pradesh",
   operatingHoursText: "Monday to Sunday: 06:00 AM – 10:00 PM (Open 16 Hours Daily, All 7 Days)",
   operatingHours: {
     openHour: 6,
@@ -26,13 +26,13 @@ const CLINIC_CONFIG = {
     closeMinute: 0
   },
   catchments: [
-    "Sector 51 Noida",
-    "Hoshiyarpur",
-    "Sector 50",
-    "Sector 52",
-    "Sector 34",
-    "Sector 61",
-    "Sector 71–78 Noida"
+    "Moti Nagar Colony",
+    "Awas Vikas Colony",
+    "Amroha",
+    "Kotwali Road",
+    "Joya Road",
+    "Station Road, Amroha",
+    "Amroha City"
   ],
   verifiedFacilities: [
     "Onsite Clinical Consultation",
@@ -58,7 +58,7 @@ const CLINIC_ASSETS = {
   // Aspect-ratio: 4/5 (Doctor Portrait in Consultation Cabin)
   doctorPortrait: "https://i.postimg.cc/vB7q2MRD/Dr-Yash-Portrait.jpg",
 
-  // Aspect-ratio: 16/9 (Signboard & Entrance in Gali No. 2, Sector 51 Noida)
+  // Aspect-ratio: 16/9 (Signboard & Entrance in Moti Nagar Colony, Near Awas Vikas Colony, Amroha)
   clinicExterior: "https://i.postimg.cc/76wzj77D/Dr-Yash-Clinic-Exterior.webp",
 
   // Aspect-ratio: 4/3 (Diagnostic & Consultation Chamber)
@@ -75,11 +75,11 @@ const CLINIC_ASSETS = {
 const SVG_FALLBACKS = {
   clinicLogo: `data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40"><rect width="40" height="40" rx="8" fill="%23ebf5fa"/><path d="M20 9v22M9 20h22" stroke="%232779a7" stroke-width="3.5" stroke-linecap="round"/></svg>`,
 
-  doctorPortrait: `data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 500" width="100%" height="100%"><defs><linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="%23273951"/><stop offset="100%" stop-color="%231a2636"/></linearGradient><linearGradient id="coatGrad" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="%23ffffff"/><stop offset="100%" stop-color="%23e8edf2"/></linearGradient></defs><rect width="400" height="500" fill="url(%23bgGrad)"/><circle cx="200" cy="160" r="64" fill="%23e2e8f0"/><path d="M120 380 C130 260 270 260 280 380 Z" fill="url(%23coatGrad)"/><path d="M170 260 L200 330 L230 260" stroke="%232779a7" stroke-width="4" fill="none"/><circle cx="200" cy="340" r="14" fill="%232779a7"/><text x="200" y="420" font-family="-apple-system,BlinkMacSystemFont,sans-serif" font-size="18" font-weight="700" fill="%23ffffff" text-anchor="middle">DR. YASH KUMAR</text><text x="200" y="445" font-family="-apple-system,BlinkMacSystemFont,sans-serif" font-size="13" font-weight="500" fill="%23b0c4de" text-anchor="middle">BAMS • General Physician &amp; Family Care</text><rect x="110" y="460" width="180" height="24" rx="12" fill="%2324b47e"/><text x="200" y="476" font-family="-apple-system,BlinkMacSystemFont,sans-serif" font-size="11" font-weight="700" fill="%23ffffff" text-anchor="middle">SECTOR 51, NOIDA</text></svg>`,
+  doctorPortrait: `data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 500" width="100%" height="100%"><defs><linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="%23273951"/><stop offset="100%" stop-color="%231a2636"/></linearGradient><linearGradient id="coatGrad" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="%23ffffff"/><stop offset="100%" stop-color="%23e8edf2"/></linearGradient></defs><rect width="400" height="500" fill="url(%23bgGrad)"/><circle cx="200" cy="160" r="64" fill="%23e2e8f0"/><path d="M120 380 C130 260 270 260 280 380 Z" fill="url(%23coatGrad)"/><path d="M170 260 L200 330 L230 260" stroke="%232779a7" stroke-width="4" fill="none"/><circle cx="200" cy="340" r="14" fill="%232779a7"/><text x="200" y="420" font-family="-apple-system,BlinkMacSystemFont,sans-serif" font-size="18" font-weight="700" fill="%23ffffff" text-anchor="middle">DR. YASH KUMAR</text><text x="200" y="445" font-family="-apple-system,BlinkMacSystemFont,sans-serif" font-size="13" font-weight="500" fill="%23b0c4de" text-anchor="middle">BAMS • General Physician &amp; Family Care</text><rect x="110" y="460" width="180" height="24" rx="12" fill="%2324b47e"/><text x="200" y="476" font-family="-apple-system,BlinkMacSystemFont,sans-serif" font-size="11" font-weight="700" fill="%23ffffff" text-anchor="middle">MOTI NAGAR, AMROHA</text></svg>`,
 
-  clinicExterior: `data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" width="100%" height="100%"><defs><linearGradient id="extGrad" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" stop-color="%23f6f9fc"/><stop offset="100%" stop-color="%23e2e8f0"/></linearGradient></defs><rect width="800" height="450" fill="url(%23extGrad)"/><rect x="140" y="60" width="520" height="90" rx="8" fill="%23273951"/><text x="400" y="105" font-family="-apple-system,BlinkMacSystemFont,sans-serif" font-size="28" font-weight="800" fill="%23ffffff" text-anchor="middle" letter-spacing="1">YASH HEALTH CLINIC</text><text x="400" y="132" font-family="-apple-system,BlinkMacSystemFont,sans-serif" font-size="14" font-weight="600" fill="%2324b47e" text-anchor="middle">DR. YASH KUMAR (BAMS) • GALI NO. 2, SECTOR 51 NOIDA</text><rect x="220" y="180" width="360" height="270" fill="%23ffffff" stroke="%23cbd5e1" stroke-width="4"/><line x1="400" y1="180" x2="400" y2="450" stroke="%23cbd5e1" stroke-width="4"/><rect x="260" y="240" width="100" height="150" fill="%23eaf2f8" rx="4"/><rect x="440" y="240" width="100" height="150" fill="%23eaf2f8" rx="4"/><rect x="330" y="40" width="140" height="24" rx="12" fill="%2324b47e"/><text x="400" y="56" font-family="-apple-system,BlinkMacSystemFont,sans-serif" font-size="11" font-weight="700" fill="%23ffffff" text-anchor="middle">OPEN DAILY 6 AM – 10 PM</text></svg>`,
+  clinicExterior: `data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" width="100%" height="100%"><defs><linearGradient id="extGrad" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" stop-color="%23f6f9fc"/><stop offset="100%" stop-color="%23e2e8f0"/></linearGradient></defs><rect width="800" height="450" fill="url(%23extGrad)"/><rect x="140" y="60" width="520" height="90" rx="8" fill="%23273951"/><text x="400" y="105" font-family="-apple-system,BlinkMacSystemFont,sans-serif" font-size="28" font-weight="800" fill="%23ffffff" text-anchor="middle" letter-spacing="1">YASH HEALTH CLINIC</text><text x="400" y="132" font-family="-apple-system,BlinkMacSystemFont,sans-serif" font-size="14" font-weight="600" fill="%2324b47e" text-anchor="middle">DR. YASH KUMAR (BAMS) • MOTI NAGAR COLONY, AMROHA</text><rect x="220" y="180" width="360" height="270" fill="%23ffffff" stroke="%23cbd5e1" stroke-width="4"/><line x1="400" y1="180" x2="400" y2="450" stroke="%23cbd5e1" stroke-width="4"/><rect x="260" y="240" width="100" height="150" fill="%23eaf2f8" rx="4"/><rect x="440" y="240" width="100" height="150" fill="%23eaf2f8" rx="4"/><rect x="330" y="40" width="140" height="24" rx="12" fill="%2324b47e"/><text x="400" y="56" font-family="-apple-system,BlinkMacSystemFont,sans-serif" font-size="11" font-weight="700" fill="%23ffffff" text-anchor="middle">OPEN DAILY 6 AM – 10 PM</text></svg>`,
 
-  consultationRoom: `data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 450" width="100%" height="100%"><rect width="600" height="450" fill="%23f8fafc"/><rect x="50" y="240" width="220" height="160" rx="6" fill="%23ffffff" stroke="%23cbd5e1" stroke-width="2"/><circle cx="160" cy="210" r="30" fill="%232779a7" opacity="0.2"/><path d="M160 190 v40 M140 210 h40" stroke="%232779a7" stroke-width="4" stroke-linecap="round"/><rect x="310" y="270" width="240" height="130" rx="4" fill="%23e2e8f0"/><line x1="310" y1="270" x2="550" y2="270" stroke="%232779a7" stroke-width="6"/><circle cx="430" cy="240" r="16" fill="%2324b47e"/><text x="300" y="80" font-family="-apple-system,BlinkMacSystemFont,sans-serif" font-size="20" font-weight="700" fill="%23273951" text-anchor="middle">Diagnostic &amp; Patient Cabin</text><text x="300" y="110" font-family="-apple-system,BlinkMacSystemFont,sans-serif" font-size="14" fill="%2364748d" text-anchor="middle">Sector 51 Noida • Hygienic 1-on-1 Consultation</text></svg>`,
+  consultationRoom: `data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 450" width="100%" height="100%"><rect width="600" height="450" fill="%23f8fafc"/><rect x="50" y="240" width="220" height="160" rx="6" fill="%23ffffff" stroke="%23cbd5e1" stroke-width="2"/><circle cx="160" cy="210" r="30" fill="%232779a7" opacity="0.2"/><path d="M160 190 v40 M140 210 h40" stroke="%232779a7" stroke-width="4" stroke-linecap="round"/><rect x="310" y="270" width="240" height="130" rx="4" fill="%23e2e8f0"/><line x1="310" y1="270" x2="550" y2="270" stroke="%232779a7" stroke-width="6"/><circle cx="430" cy="240" r="16" fill="%2324b47e"/><text x="300" y="80" font-family="-apple-system,BlinkMacSystemFont,sans-serif" font-size="20" font-weight="700" fill="%23273951" text-anchor="middle">Diagnostic &amp; Patient Cabin</text><text x="300" y="110" font-family="-apple-system,BlinkMacSystemFont,sans-serif" font-size="14" fill="%2364748d" text-anchor="middle">Moti Nagar, Amroha • Hygienic 1-on-1 Consultation</text></svg>`,
 
   pharmacyWing: `data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 450" width="100%" height="100%"><rect width="600" height="450" fill="%23f1f5f9"/><rect x="80" y="80" width="440" height="260" rx="6" fill="%23ffffff" stroke="%23cbd5e1" stroke-width="2"/><line x1="80" y1="150" x2="520" y2="150" stroke="%23e2e8f0" stroke-width="3"/><line x1="80" y1="220" x2="520" y2="220" stroke="%23e2e8f0" stroke-width="3"/><rect x="110" y="105" width="28" height="35" rx="3" fill="%232779a7"/><rect x="150" y="100" width="34" height="40" rx="3" fill="%2324b47e"/><rect x="196" y="110" width="24" height="30" rx="3" fill="%23e2e8f0"/><rect x="235" y="102" width="30" height="38" rx="3" fill="%232779a7"/><rect x="110" y="175" width="32" height="35" rx="3" fill="%2324b47e"/><rect x="154" y="170" width="26" height="40" rx="3" fill="%232779a7"/><rect x="190" y="172" width="40" height="38" rx="3" fill="%23f59e0b"/><rect x="50" y="340" width="500" height="60" rx="4" fill="%23273951"/><text x="300" y="375" font-family="-apple-system,BlinkMacSystemFont,sans-serif" font-size="16" font-weight="700" fill="%23ffffff" text-anchor="middle">In-House Verified Medicine Dispensary</text></svg>`,
 
@@ -201,12 +201,12 @@ function handleAppointmentSubmit(event) {
     return;
   }
 
-  const message = `Namaste Dr. Yash Kumar, I would like to book an OPD consultation at Yash Health Clinic (Sector 51 Noida).%0A%0A` +
+  const message = `Namaste Dr. Yash Kumar, I would like to book an OPD consultation at Yash Health Clinic (Moti Nagar Colony, Amroha).%0A%0A` +
     `• *Patient Name:* ${encodeURIComponent(name)}%0A` +
     `• *Contact Number:* ${encodeURIComponent(phone)}%0A` +
     `• *Department / Clinical Concern:* ${encodeURIComponent(dept)}%0A` +
     `• *Preferred Time Window:* ${encodeURIComponent(timeSlot)}%0A` +
-    `• *Clinic Locality:* Gali No. 2, Hoshiyarpur, Sector 51 Noida%0A%0A` +
+    `• *Clinic Address:* Moti Nagar Colony, Near Awas Vikas Colony, Amroha, Uttar Pradesh%0A%0A` +
     `Please confirm the next available doctor slot. Thank you!`;
 
   const whatsappUrl = `https://wa.me/${CLINIC_CONFIG.whatsappNumber}?text=${message}`;

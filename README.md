@@ -5,7 +5,7 @@
 [![OPD Hours](https://img.shields.io/badge/OPD%20Hours-06%3A00%20AM%20%E2%80%93%2010%3A00%20PM-2779A7?style=flat-square)](tel:+918449430219)
 [![Design Standard](https://img.shields.io/badge/Design%20System-World--Class%20UI%2FUX-273951?style=flat-square)]()
 
-A flagship, institutional-grade Multispeciality Healthcare & Doctor Portfolio web platform for **Yash Health Clinic**, led by **Dr. Yash Kumar, BAMS** (General Physician & Family Medicine Specialist) in **Sector 51, Noida, Uttar Pradesh**.
+A flagship, institutional-grade Multispeciality Healthcare & Doctor Portfolio web platform for **Yash Health Clinic**, led by **Dr. Yash Kumar, BAMS** (General Physician & Family Medicine Specialist) in **Moti Nagar Colony, Near Awas Vikas Colony, Amroha, Uttar Pradesh**.
 
 Designed and engineered following **Category #2: Clinic, Hospital and Healthcare** from the `world-class-ui-ux-design` system, synthesizing:
 - **Apollo/Practo Prime** clinical authority & clean information architecture
@@ -24,8 +24,8 @@ Designed and engineered following **Category #2: Clinic, Hospital and Healthcare
 - **OPD Timings:** `06:00 AM – 10:00 PM` (Open 16 Hours Daily, Monday to Sunday, All 7 Days)
 - **Direct Phone:** `+91 84494 30219` (`tel:+918449430219`)
 - **WhatsApp Booking:** `+91 84494 30219` (`https://wa.me/918449430219`)
-- **Physical Address:** Gali No. 2, Hoshiyarpur, Hoshiarpur Village, Sector 51, Noida, UP 201303
-- **Primary Catchments (Local SEO):** Sector 51 Noida, Hoshiyarpur, Sector 50, Sector 52, Sector 34, Sector 61, Sector 71–78 Noida
+- **Physical Address:** Moti Nagar Colony, Near Awas Vikas Colony, Amroha, Uttar Pradesh
+- **Primary Catchments (Local SEO):** Moti Nagar Colony, Awas Vikas Colony, Amroha City, Kotwali Road, Joya Road, Station Road
 - **In-House Amenities:** 1-on-1 Consultation Chamber, Verified In-House Medicine Dispensary, Dedicated Maternal & Child Nursing Room, Ground-Floor Easy Access
 
 ---
@@ -89,4 +89,4 @@ Open [http://localhost:3000](http://localhost:3000) in your browser.
 ## 👨‍⚕️ Author & Leadership
 
 - **Chief Physician:** Dr. Yash Kumar, BAMS
-- **Clinic:** Yash Health Clinic, Sector 51, Noida, Uttar Pradesh, India
+- **Clinic:** Yash Health Clinic, Moti Nagar Colony, Near Awas Vikas Colony, Amroha, Uttar Pradesh, India
